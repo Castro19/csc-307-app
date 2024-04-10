@@ -1,5 +1,6 @@
 import React from "react";
 
+// React Helper Component for the columns
 function TableHeader() {
   return (
     <thead>
@@ -11,6 +12,8 @@ function TableHeader() {
     </thead>
   );
 }
+// React Helper Component for the Data in the table
+// Use map and key to create an element in array to HTML
 function TableBody({ characterData, removeOneCharacter }) {
   const rows = characterData.map((row, index) => {
     return (
@@ -25,12 +28,13 @@ function TableBody({ characterData, removeOneCharacter }) {
   });
   return <tbody>{rows}</tbody>;
 }
+// Table component that has columns and table data
 function Table({ characterData, removeOneCharacter }) {
   return (
     <table>
       {/* Columns*/}
       <TableHeader />
-      {/* Value */}
+      {/* Data */}
       <TableBody
         characterData={characterData}
         removeOneCharacter={removeOneCharacter}

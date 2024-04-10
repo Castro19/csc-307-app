@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ updateList }) => {
+  // Individual Character updated by user input thru form
   const [person, setPerson] = useState({
     name: "",
     job: "",
   });
-
+  //   Handle each typed character or change in the input field
   function handleChange(e) {
     const { name, value } = e.target;
     if (name === "name")
@@ -19,6 +20,14 @@ const Form = () => {
         job: value,
       });
     }
+  }
+  //  Handler function when the user Submit the form
+  function submitForm() {
+    updateList(person);
+    setPerson({
+      name: "",
+      job: "",
+    });
   }
   return (
     <form>
@@ -38,6 +47,7 @@ const Form = () => {
         value={person.job}
         onChange={handleChange}
       />
+      <input type="button" value="Submit" onClick={submitForm} />
     </form>
   );
 };
