@@ -29,7 +29,7 @@ This repository is for my class Intro to Software Engineering.
 
 3. **Install Dependencies for Client & Server:**
    ```
-   npm install:all
+   npm run install:all
    ```
 4. **Start the client & server:**
 
