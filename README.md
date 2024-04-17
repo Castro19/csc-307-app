@@ -1,12 +1,12 @@
-# Lab 1 for Intro to SWE 
+# Lab 1 for Intro to SWE
 
 ## Description
 
-This repository is for my class Intro to Software Engineering. 
+This repository is for my class Intro to Software Engineering.
 
 - In this lab assignment, we implemented the front-end of a simple web application using React where a user can update a table component on the home page.
   - Users can add/delete the data in the table by submitting a new form or pressing a removal button.
-- In the lab, students learned about npm, monorepos, git, react (state, props, and component hierarchy) 
+- In the lab, students learned about npm, monorepos, git, react (state, props, and component hierarchy)
 
 ## Requirements
 
@@ -27,8 +27,12 @@ This repository is for my class Intro to Software Engineering.
    npm install
    ```
 
-4. **Start the client:**
+3. **Install Dependencies for Client & Server:**
+   ```
+   npm install:all
+   ```
+4. **Start the client & server:**
 
    ```
-   npm run start
+   npm run start:dev
    ```

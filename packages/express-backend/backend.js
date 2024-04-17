@@ -82,18 +82,27 @@ const addUser = (newUser) => {
 app.post("/users", (req, res) => {
   const newUser = req.body;
   addUser(newUser);
-  res.send(newUser);
+  res.status(201).send(newUser);
 });
 
 const deleteUserByID = (userId) => {
+  const initialLength = users["users_list"].length;
   users["users_list"] = users["users_list"].filter((user) => user.id != userId);
+  const newLength = users["users_list"].length;
+  return newLength < initialLength; // Returns true if a user was deleted
 };
 
 app.delete("/users/:id", (req, res) => {
   const userId = req.params.id;
-  deleteUserByID(userId);
+  const userDeleted = deleteUserByID(userId);
+
+  if (!userDeleted) {
+    console.log("No user found with ID: ", userId);
+    return res.status(404).send({ message: "User not found" }); // No user was deleted
+  }
+
   console.log("Updated User List: ", users["users_list"]);
-  res.status(204).send();
+  res.status(204).send(); // Successful deletion, no content to return
 });
 
 app.listen(port, () => {
