@@ -1,12 +1,14 @@
-// 1. Creating a Hello World
+// backend.js: Creating a Back-end w/ CRUD Operations using HTTP Methods
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
+app.use(cors());
 
 app.use(express.json());
 
-const users = {
+let users = {
   users_list: [
     {
       id: "xyz789",
@@ -36,9 +38,14 @@ const users = {
   ],
 };
 
+const generateID = () => {
+  return Math.random();
+};
+// Read: HTTP Get Method to get an array of objects given a name that matches
 const findUserByName = (name) => {
   return users["users_list"].filter((user) => user.name === name);
 };
+
 app.get("/users", (req, res) => {
   const name = req.query.name;
   if (name != undefined) {
@@ -50,10 +57,10 @@ app.get("/users", (req, res) => {
   }
 });
 
+// Read: HTTP Get Method to return an object that matches with the unique identifier
 const findUserById = (id) => {
   return users["users_list"].find((user) => user.id === id);
 };
-
 app.get("/users/:id", (req, res) => {
   const id = req.params["id"];
   let result = findUserById(id);
@@ -61,8 +68,32 @@ app.get("/users/:id", (req, res) => {
   if (result === undefined) {
     res.status(404).send("Resource not found.");
   } else {
-    res.send(result);
+    res.send(json.stringify(result));
   }
+});
+
+// Write: Post HTTP method when given a JSON object on client, it adds it to our list of users.
+const addUser = (newUser) => {
+  newUser["id"] = generateID(); // Generate a random ID
+  users["users_list"].push(newUser);
+  return newUser;
+};
+
+app.post("/users", (req, res) => {
+  const newUser = req.body;
+  addUser(newUser);
+  res.send(newUser);
+});
+
+const deleteUserByID = (userId) => {
+  users["users_list"] = users["users_list"].filter((user) => user.id != userId);
+};
+
+app.delete("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  deleteUserByID(userId);
+  console.log("Updated User List: ", users["users_list"]);
+  res.status(204).send();
 });
 
 app.listen(port, () => {
