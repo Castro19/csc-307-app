@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import Form from "./Form";
@@ -63,11 +64,12 @@ function MyApp() {
 
   // Handler Function when the user removes a character
   async function removeOneCharacter(index) {
-    const id = characters.find((_, i) => index === i).id;
+    const id = characters.find((_, i) => index === i)._id;
+
     try {
       if (id !== undefined) {
         await deleteUser(id);
-        setCharacters(characters.filter((curr) => curr.id !== id));
+        setCharacters(characters.filter((curr) => curr._id !== id));
       }
     } catch (error) {
       console.log("Error Removing Character: ", error);

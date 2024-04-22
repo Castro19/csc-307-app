@@ -18,6 +18,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "mongoose": "^8.3.2"
   }
 }
