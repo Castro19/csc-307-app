@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Table from "./Table";
 import Form from "./Form";
-
+import SearchBar from "./SearchBar";
 function MyApp() {
   // State variable: A list that displays the data for the table
   const [characters, setCharacters] = useState([]);
@@ -93,6 +93,9 @@ function MyApp() {
 
   return (
     <div className="container">
+      <div>
+        <SearchBar setCharacters={setCharacters} />
+      </div>
       <Table
         characterData={characters}
         removeOneCharacter={removeOneCharacter}
