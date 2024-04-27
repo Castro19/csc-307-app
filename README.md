@@ -28,11 +28,19 @@ This repository is for my class Intro to Software Engineering.
    ```
 
 3. **Install Dependencies for Client & Server:**
+
    ```
    npm run install:all
    ```
-4. **Start the client & server:**
+
+4. **Start Mongosh Database:**
 
    ```
-   npm run start:dev
+   mongosh
+   ```
+
+5. **Start the client & server:**
+
+   ```
+   npm run start
    ```

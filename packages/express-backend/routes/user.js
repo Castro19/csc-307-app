@@ -16,8 +16,11 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const id = req.params["id"];
+  const id = req.params.id;
   const result = await userServices.findUserById(id);
+
+  console.log("RESULT ID LIST: ", result);
+
   if (result === undefined || result === null)
     res.status(404).send("Resource not found.");
   else {
