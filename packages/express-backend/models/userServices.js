@@ -18,8 +18,15 @@ function getUsers(name, job) {
     promise = findUserByName(name);
   } else if (job && !name) {
     promise = findUserByJob(job);
+  } else {
+    promise = findUserByNameAndJob(name, job);
   }
   return promise;
+}
+
+// Find by both name & job:
+function findUserByNameAndJob(name, job) {
+  return userModel.find({ name: name, job: job });
 }
 
 function findUserById(id) {

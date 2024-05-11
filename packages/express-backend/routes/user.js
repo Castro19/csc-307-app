@@ -6,6 +6,9 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const name = req.query["name"];
   const job = req.query["job"];
+  console.log("NAme: ", name);
+  console.log("job: ", job);
+
   try {
     const result = await userServices.getUsers(name, job);
     res.send({ users_list: result });
@@ -40,7 +43,7 @@ router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     const result = await userServices.deleteUserByID(id);
     console.log(result);
-    res.send(result).status(204);
+    res.status(204).send(result);
   } catch (err) {
     console.error(err);
     res.status(500).send("Error deleting item");
